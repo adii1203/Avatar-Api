@@ -15,7 +15,7 @@ const generateAvatarWithLetter = (name, background, font, bold, format) => {
     {
       input: Buffer.from(
         `<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                <text x="40%" y="60%" font-family="Arial" font-size="24" font-weight='${
+                <text x="40%" y="60%" font-size="24" font-weight='${
                   bold === 'true' ? 700 : 500
                 }' fill='#${font}'>${name}</text>
               </svg>`,
