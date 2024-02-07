@@ -18,6 +18,8 @@ Welcome to the Avatar Generation Service! This service allows you to generate av
 
 ### Generate Avatar with First Letter
 
+![named avatar](./public/withName.png)
+
 ```javascript
 // Base url
 GET v1/avatar/t/d?name=aditya
@@ -41,6 +43,8 @@ This will return a PNG image with the first letter `A` as the avatar.
 
 ### Generate Avatar with gradients
 
+![gradient avatar](./public/gradient.png)
+
 ```javascript
 // Base url
 GET v1/avatar/t/g
@@ -56,6 +60,4 @@ v1/avatar/t/g?index=45&format=webp
 | `index`  | `false` |         | `0` - `180`             |
 | `format` | `false` | `png`   | `png` , `webp` , `jpeg` |
 
-```javascript
-// without index it returns random avatar for every subsequent request.
-```
+without index it returns random avatar for every subsequent request.
