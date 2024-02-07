@@ -13,3 +13,49 @@ Welcome to the Avatar Generation Service! This service allows you to generate av
 - API endpoints to easily integrate avatar generation into your applications.
 
 - Support `png`, `jpeg` and `webp` formats.
+
+## Uses
+
+### Generate Avatar with First Letter
+
+```javascript
+// Base url
+GET v1/avatar/t/d?name=aditya
+
+// with query
+v1/avatar/t/d?name=aditya&background_color=0000FF&font_color=000
+```
+
+This will return a PNG image with the first letter `A` as the avatar.
+
+### Possiable query
+
+| Queries            | require | Default | expected values            |
+| ------------------ | ------- | ------- | -------------------------- |
+| `name`             | `true`  |         |                            |
+| `background_color` | `false` | `000`   | hex color code without `#` |
+| `fornt_color`      | `false` | `fff`   | hex color code without `#` |
+| `is_bold`          | `false` | `false` | `true` , `false`           |
+| `is_uppercase`     | `false` | `true`  | `true` , `false`           |
+| `format`           | `false` | `png`   | `png` , `webp` , `jpeg`    |
+
+### Generate Avatar with gradients
+
+```javascript
+// Base url
+GET v1/avatar/t/g
+
+// with query
+v1/avatar/t/g?index=45&format=webp
+```
+
+### Possiable query
+
+| Queries  | require | Default | expected values         |
+| -------- | ------- | ------- | ----------------------- |
+| `index`  | `false` |         | `0` - `180`             |
+| `format` | `false` | `png`   | `png` , `webp` , `jpeg` |
+
+```javascript
+// without index it returns random avatar for every subsequent request.
+```
