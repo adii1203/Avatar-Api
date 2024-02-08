@@ -1,3 +1,4 @@
+import { registerFont } from 'canvas';
 import {
   generateAvatarWithLetter,
   generateAvatarWithGradient,
@@ -22,18 +23,18 @@ const getNamedAvatar = async (req, res) => {
   } else {
     firstLetter = firstLetter.toLowerCase();
   }
+  registerFont(`./src/font/OpenSans.ttf`, { family: `OpenSans` });
   const img = generateAvatarWithLetter(
     firstLetter,
     background_color,
     font_color,
-    is_bold,
     format,
   );
   res.writeHead(200, {
-    'Content-Type': 'image/png',
+    'Content-Type': `image/${format}`,
     'Content-Length': img.length,
   });
-  res.end(img);
+  return res.end(img);
 };
 
 const getGradientAvatar = async (req, res) => {

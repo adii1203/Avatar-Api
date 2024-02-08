@@ -2,15 +2,14 @@ import sharp from 'sharp';
 import { gradient } from '../constant/gradient.js';
 import { registerFont, createCanvas, loadImage } from 'canvas';
 
-const generateAvatarWithLetter = (name, background, font, bold, format) => {
-  registerFont('./src/font/font.ttf', { family: 'font' });
+const generateAvatarWithLetter = (name, background, font_color) => {
   const canvas = createCanvas(64, 64);
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = `#${background}`;
   ctx.fillRect(0, 0, 64, 64);
 
-  ctx.font = `${bold === 'true' ? 'bold' : ''} 24px font`;
-  ctx.fillStyle = `#${font}`;
+  ctx.font = `24px OpenSans`;
+  ctx.fillStyle = `#${font_color}`;
 
   const textWidth = ctx.measureText(name).width;
   const textHeight = 16;
