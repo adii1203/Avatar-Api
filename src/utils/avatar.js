@@ -1,29 +1,27 @@
 import sharp from 'sharp';
 import { gradient } from '../constant/gradient.js';
+import { registerFont, createCanvas, loadImage } from 'canvas';
 
 const generateAvatarWithLetter = (name, background, font, bold, format) => {
-  const img = sharp({
-    create: {
-      width: 64,
-      height: 64,
-      channels: 4,
-      background: `#${background}`,
-    },
-  });
+  registerFont('./src/font/font.ttf', { family: 'font' });
+  const canvas = createCanvas(64, 64);
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = `#${background}`;
+  ctx.fillRect(0, 0, 64, 64);
 
-  img.composite([
-    {
-      input: Buffer.from(
-        `<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-                <text x="40%" y="60%" font-size="24" font-weight='${
-                  bold === 'true' ? 700 : 500
-                }' fill='#${font}'>${name}</text>
-              </svg>`,
-      ),
-    },
-  ]);
-  img.toFormat(format);
-  return img;
+  ctx.font = `${bold === 'true' ? 'bold' : ''} 24px font`;
+  ctx.fillStyle = `#${font}`;
+
+  const textWidth = ctx.measureText(name).width;
+  const textHeight = 16;
+
+  const x = (64 - textWidth) / 2;
+  const y = (64 + textHeight) / 2;
+
+  ctx.fillText(name, x, y);
+
+  const buffer = canvas.toBuffer();
+  return buffer;
 };
 
 const generateAvatarWithGradient = (index, format) => {

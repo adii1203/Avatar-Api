@@ -6,8 +6,8 @@ import {
 const getNamedAvatar = async (req, res) => {
   const {
     name,
-    background_color = '000',
-    font_color = 'fff',
+    background_color = 'fff',
+    font_color = '000',
     is_uppercase = 'true',
     is_bold = 'false',
     format = 'png',
@@ -29,9 +29,11 @@ const getNamedAvatar = async (req, res) => {
     is_bold,
     format,
   );
-  res.setHeader('Content-Type', `image/${format}`);
-
-  return img.pipe(res);
+  res.writeHead(200, {
+    'Content-Type': 'image/png',
+    'Content-Length': img.length,
+  });
+  res.end(img);
 };
 
 const getGradientAvatar = async (req, res) => {
